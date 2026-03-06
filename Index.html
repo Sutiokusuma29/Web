@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Clean Page</title>
+    <style>
+      :root{
+        --bg: #0b1220;
+        --card: rgba(255,255,255,.06);
+        --card-border: rgba(255,255,255,.12);
+        --text: rgba(255,255,255,.92);
+        --muted: rgba(255,255,255,.72);
+        --brand: #7c3aed;
+        --brand2: #22c55e;
+        --shadow: 0 18px 50px rgba(0,0,0,.45);
+        --radius: 18px;
+      }
+
+      *{ box-sizing: border-box; }
+      html, body{ height: 100%; }
+      body{
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(900px 600px at 12% 10%, rgba(124,58,237,.35), transparent 60%),
+          radial-gradient(900px 600px at 90% 30%, rgba(34,197,94,.25), transparent 55%),
+          radial-gradient(700px 500px at 55% 95%, rgba(59,130,246,.20), transparent 55%),
+          linear-gradient(180deg, #070b13, var(--bg));
+        display: grid;
+        place-items: center;
+        padding: 28px 16px;
+      }
+
+      .container{
+        width: min(100%, 1040px);
+      }
+
+      header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .logo{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: .2px;
+      }
+
+      .logo-badge{
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--brand), #3b82f6);
+        box-shadow: 0 10px 30px rgba(124,58,237,.35);
+      }
+
+      nav{
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      nav a{
+        text-decoration: none;
+        color: var(--muted);
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: .2s ease;
+      }
+      nav a:hover{
+        color: var(--text);
+        border-color: rgba(255,255,255,.14);
+        background: rgba(255,255,255,.04);
+      }
+
+      .hero{
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow);
+        padding: 26px;
+      }
+
+      .hero-grid{
+        display: grid;
+        grid-template-columns: 1.2fr .8fr;
+        gap: 18px;
+      }
+
+      @media (max-width: 880px){
+        .hero-grid{ grid-template-columns: 1fr; }
+      }
+
+      .kicker{
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.14);
+        background: rgba(0,0,0,.18);
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .dot{
+        width: 8px; height: 8px;
+        border-radius: 999px;
+        background: var(--brand2);
+        box-shadow: 0 0 0 6px rgba(34,197,94,.12);
+      }
+
+      h1{
+        margin: 14px 0 8px;
+        font-size: clamp(28px, 3.2vw, 42px);
+        line-height: 1.1;
+        letter-spacing: -0.6px;
+      }
+      p{
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+        max-width: 60ch;
+      }
+
+      .actions{
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .btn{
+        border: 1px solid rgba(255,255,255,.16);
+        background: rgba(255,255,255,.05);
+        color: var(--text);
+        padding: 11px 14px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+      .btn.primary{
+        border: 0;
+        background: linear-gradient(135deg, var(--brand), #3b82f6);
+        box-shadow: 0 12px 30px rgba(124,58,237,.28);
+      }
+      .btn.primary:hover{ filter: brightness(1.05); }
+
+      .panel{
+        border-radius: 16px;
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.12);
+        padding: 18px;
+      }
+
+      .stat{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .stat-card{
+        padding: 14px;
+        border-radius: 14px;
+        background: rgba(0,0,0,.16);
+        border: 1px solid rgba(255,255,255,.10);
+      }
+      .stat-card .num{
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.4px;
+      }
+      .stat-card .label{
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 4px;
+      }
+
+      .features{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 14px;
+      }
+      @media (max-width: 880px){
+        .features{ grid-template-columns: 1fr; }
+      }
+
+      .feature{
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.10);
+        transition: .2s ease;
+      }
+      .feature:hover{
+        transform: translateY(-1px);
+        background: rgba(255,255,255,.06);
+      }
+
+      .icon{
+        width: 36px; height: 36px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: rgba(124,58,237,.18);
+        border: 1px solid rgba(124,58,237,.30);
+        margin-bottom: 10px;
+      }
+
+      footer{
+        margin-top: 16px;
+        color: rgba(255,255,255,.55);
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      /* subtle glow ornaments */
+      .hero::before{
+        content:"";
+        position:absolute;
+        inset:-120px -160px auto auto;
+        width: 360px;
+        height: 360px;
+        background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), transparent 60%);
+        filter: blur(10px);
+        pointer-events:none;
+      }
+      .hero::after{
+        content:"";
+        position:absolute;
+        inset:auto auto -160px -170px;
+        width: 420px;
+        height: 420px;
+        background: radial-gradient(circle at 40% 40%, rgba(34,197,94,.24), transparent 60%);
+        filter: blur(10px);
+        pointer-events:none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <div class="logo-badge" aria-hidden="true"></div>
+          <div>Minimal Landing</div>
+        </div>
+
+        <nav>
+          <a href="#fitur">Fitur</a>
+          <a href="#harga">Harga</a>
+          <a href="#kontak">Kontak</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <div class="hero-grid">
+          <section>
+            <span class="kicker"><span class="dot" aria-hidden="true"></span> Simple • Clean • Fast</span>
+            <h1>HTML sederhana dengan styling modern (tanpa framework)</h1>
+            <p>
+              Template ini cocok untuk landing page, portfolio mini, atau halaman produk.
+              Sudah responsive, punya CTA, dan kartu fitur yang rapi.
+            </p>
+
+            <div class="actions">
+              <a class="btn primary" href="#kontak" aria-label="Mulai sekarang">
+                <span>Mulai sekarang</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a class="btn" href="#fitur">Lihat fitur</a>
+            </div>
+          </section>
+
+          <aside class="panel" id="harga">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+              <div style="font-weight:800; letter-spacing:-.2px;">Overview</div>
+              <div style="color:rgba(255,255,255,.6); font-size:13px;">v1.0</div>
+            </div>
+
+            <div class="stat" style="margin-top:12px;">
+              <div class="stat-card">
+                <div class="num">100%</div>
+                <div class="label">Responsive</div>
+              </div>
+              <div class="stat-card">
+                <div class="num">0</div>
+                <div class="label">Library</div>
+              </div>
+              <div class="stat-card">
+                <div class="num">A+</div>
+                <div class="label">Layout clean</div>
+              </div>
+              <div class="stat-card">
+                <div class="num">1 file</div>
+                <div class="label">Mudah dipakai</div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px; color:rgba(255,255,255,.7); font-size:13px; line-height:1.6;">
+              Tip: Ganti judul, teks, dan warna di <code>:root</code> untuk branding kamu.
+            </div>
+          </aside>
+        </div>
+
+        <section class="features" id="fitur" style="position:relative; margin-top:16px;">
+          <div class="feature">
+            <div class="icon" aria-hidden="true">⚡</div>
+            <div style="font-weight:800; margin-bottom:6px;">Cepat</div>
+            <div style="color:rgba(255,255,255,.72); line-height:1.6;">
+              Tanpa framework, loading ringan.
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon" aria-hidden="true">🧩</div>
+            <div style="font-weight:800; margin-bottom:6px;">Modular</div>
+            <div style="color:rgba(255,255,255,.72); line-height:1.6;">
+              Section mudah ditambah atau dihapus.
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon" aria-hidden="true">🎯</div>
+            <div style="font-weight:800; margin-bottom:6px;">Rapi</div>
+            <div style="color:rgba(255,255,255,.72); line-height:1.6;">
+              Typography, spacing, dan card style konsisten.
+            </div>
+          </div>
+        </section>
+
+        <footer id="kontak">
+          <div>© <span id="year"></span> Minimal Landing</div>
+          <div>
+            Kontak: <a href="mailto:hello@example.com" style="color:rgba(255,255,255,.82);">hello@example.com</a>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      // set year otomatis
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
